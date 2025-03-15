@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #000; /* لون الصفحة أسود */
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* ✅ تهيئة قسم الشركة */
+        section {
+            padding: 60px 20px;
+            background-color: #1e1e2f;
+            color: white;
+        }
+
+        /* ✅ تحسين العناوين */
+        h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* ✅ تحسين النصوص */
+        p {
+            font-size: 18px;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* ✅ تهيئة الحاوية للأقسام */
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* ✅ تنسيق كل قسم */
+        .block {
+            background: #25253a;
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            width: 300px;
+        }
+
+        /* ✅ تأثير عند تمرير الماوس */
+        .block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ✅ ضبط الأزرار */
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        /* ✅ لون الأزرار */
+        .button-md {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .button-md:hover {
+            background: #357ABD;
+        }
+
+        /* ✅ تحسين استجابة الصفحة للأجهزة الصغيرة */
+        @media (max-width: 768px) {
+            .flex {
+                flex-direction: column;
+            }
+            
+            .block {
+                width: 90%;
+                margin: auto;
+            }
+        }
+
+    
+    </style>
+</head>
+<body>
+    
+    <!-- قسم الشركة -->
+    <section class="p-10 bg-indigo-lightest-10 text-center">
+        <h2 class="white fs-l3 fw-900 mb-4">🏢 تعرف على شركتنا</h2>
+        <p class="indigo-lightest fw-600 fs-m1 opacity-50 mb-6">
+            نعمل على تقديم أحدث الحلول التقنية في مجالات البرمجة، التطوير، والأمن السيبراني، لنساعدك في بناء مستقبلك الرقمي.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6">
+            
+            <!-- من نحن -->
+            <div class="w-100pc md-w-25pc p-5">
+                <div class="block bg-indigo-lightest-20 p-6 br-8 hover-scale-up-1 ease-300 shadow-lg">
+                    <h3 class="white fw-700 fs-m3 mb-3">💡 من نحن</h3>
+                    <p class="indigo-lightest fw-600 fs-m1 opacity-50 mb-4">
+                        شركة تقنية متخصصة في تطوير البرمجيات والحلول الرقمية المبتكرة، نهدف إلى تقديم خدمات عالية الجودة.
+                    </p>
+                    <a href="#" class="button-md bg-indigo white fs-s3 br-4 fw-600 no-underline">اقرأ المزيد</a>
+                </div>
+            </div>
+
+            <!-- المدونة التقنية -->
+            <div class="w-100pc md-w-25pc p-5">
+                <div class="block bg-indigo-lightest-20 p-6 br-8 hover-scale-up-1 ease-300 shadow-lg">
+                    <h3 class="white fw-700 fs-m3 mb-3">📖 المدونة التقنية</h3>
+                    <p class="indigo-lightest fw-600 fs-m1 opacity-50 mb-4">
+                        تابع أحدث المقالات والدروس في عالم البرمجة، التصميم، والذكاء الاصطناعي، وكن على اطلاع دائم بالتقنيات الحديثة.
+                    </p>
+                    <a href="{% url 'home' %}" class="button-md bg-indigo white fs-s3 br-4 fw-600 no-underline">استكشف المدونة</a>
+                </div>
+            </div>
+
+            <!-- انضم إلينا -->
+            <div class="w-100pc md-w-25pc p-5">
+                <div class="block bg-indigo-lightest-20 p-6 br-8 hover-scale-up-1 ease-300 shadow-lg">
+                    <h3 class="white fw-700 fs-m3 mb-3">👥 انضم إلينا</h3>
+                    <p class="indigo-lightest fw-600 fs-m1 opacity-50 mb-4">
+                        هل أنت مبرمج أو مصمم موهوب؟ انضم إلى فريقنا وكن جزءًا من مستقبل الابتكار التقني.
+                    </p>
+                    <a href="#" id="show-form" class="button-md bg-indigo white fs-s3 br-4 fw-600 no-underline">قدّم طلبك</a>
+                </div>
+            </div>
+
+            <!-- وسائل الإعلام -->
+            <div class="w-100pc md-w-25pc p-5">
+                <div class="block bg-indigo-lightest-20 p-6 br-8 hover-scale-up-1 ease-300 shadow-lg">
+                    <h3 class="white fw-700 fs-m3 mb-3">📰 وسائل الإعلام</h3>
+                    <p class="indigo-lightest fw-600 fs-m1 opacity-50 mb-4">
+                        اكتشف آخر الأخبار والفعاليات التقنية التي نشارك فيها، وتواصل مع فريقنا الإعلامي.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
