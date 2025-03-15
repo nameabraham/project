@@ -8,5 +8,7 @@ urlpatterns = [
     path('about/' , views.about , name='about'),
     path('footer/' , views.footer , name='footer'),
     path('join/' , views.join , name='join'),
+    path('buy/' , views.buy , name='buy'),
+    path('support/ ' , views.support , name='support'),
 
 ]

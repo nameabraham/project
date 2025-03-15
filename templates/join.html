@@ -86,7 +86,9 @@
             .form-container button {
                 font-size: 16px;
             }
+             
         }
+       
     </style>
 </head>
 <body>
@@ -104,16 +106,12 @@
             <!-- حقل الاسم الكامل -->
             <input type="text" name="name" placeholder="الاسم الكامل" required>
             
-            <!-- حقل البريد الإلكتروني -->
             <input type="email" name="email" placeholder="البريد الإلكتروني" required>
             
-            <!-- حقل رقم الهاتف -->
             <input type="tel" name="phone" placeholder="رقم الهاتف">
             
-            <!-- حقل المهارات -->
             <textarea name="skills" placeholder="المهارات" required></textarea>
             
-            <!-- حقل الخبرة -->
             <select name="experience" required>
                 <option value="" disabled selected>اختر مستوى خبرتك</option>
                 <option value="مبتدئ">مبتدئ</option>
@@ -121,9 +119,9 @@
                 <option value="محترف">محترف</option>
             </select>
             
-            <!-- زر الإرسال -->
             <button type="submit">إرسال الطلب</button>
         </form>
     </div>
+    <a href="{% url 'home' %}" class="home-button">🔙 العودة إلى الصفحة الرئيسية</a>
 </body>
 </html>

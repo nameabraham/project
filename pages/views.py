@@ -75,3 +75,10 @@ def join(request):
         return redirect('join')  # إعادة تحميل الصفحة بعد الإرسال
 
     return render(request, 'join.html')
+
+
+def buy(request):
+    return render(request , 'buy.html')
+
+def support(request):
+    return render(request , 'support.html')
