@@ -1,183 +1,229 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-         <style>
-            body {
-                display: flex;
-                justify-content: center; /* توسيط أفقي */
-                align-items: center; /* توسيط عمودي */
-                height: 100vh; /* جعل الصفحة تأخذ كامل ارتفاع الشاشة */
-                background-color: #f4f4f4; /* لون خلفية خفيف */
-                margin: 0; /* إزالة أي هوامش افتراضية */
+    <title>التسجيل</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .form {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 350px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 20px;
+            background-color: whitesmoke;
+            color: #212121;
+            border: 1px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+            color: #d30073;
+        }
+
+        .title::before,
+        .title::after {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            left: 0px;
+            background-color: #d30073;
+        }
+
+        .title::after {
+            width: 18px;
+            height: 18px;
+            animation: pulse 1s linear infinite;
+        }
+
+        .message,
+        .signin {
+            font-size: 14.5px;
+            color: #333;
+        }
+
+        .signin {
+            text-align: center;
+        }
+
+        .signin a {
+            color: #d30073;
+            text-decoration: none;
+        }
+
+        .signin a:hover {
+            text-decoration: underline;
+        }
+
+        .flex {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+        }
+
+        @media (min-width: 500px) {
+            .flex {
+                flex-direction: row;
             }
-            
-            .form {
-              display: flex;
-              flex-direction: column;
-              gap: 10px;
-              max-width: 350px;
-              background-color: #fff;
-              padding: 20px;
-              border-radius: 20px;
-              position: relative;
-            }
-            
-            .title {
-              font-size: 28px;
-              color: royalblue;
-              font-weight: 600;
-              letter-spacing: -1px;
-              position: relative;
-              display: flex;
-              align-items: center;
-              padding-left: 30px;
-            }
-            
-            .title::before,.title::after {
-              position: absolute;
-              content: "";
-              height: 16px;
-              width: 16px;
-              border-radius: 50%;
-              left: 0px;
-              background-color: royalblue;
-            }
-            
-            .title::before {
-              width: 18px;
-              height: 18px;
-              background-color: royalblue;
-            }
-            
-            .title::after {
-              width: 18px;
-              height: 18px;
-              animation: pulse 1s linear infinite;
-            }
-            
-            .message, .signin {
-              color: rgba(88, 87, 87, 0.822);
-              font-size: 14px;
-            }
-            
-            .signin {
-              text-align: center;
-            }
-            
-            .signin a {
-              color: royalblue;
-            }
-            
-            .signin a:hover {
-              text-decoration: underline royalblue;
-            }
-            
-            {% comment %} .flex {
-              display: flex;
-              width: 100%;
-              gap: 6px;
-            } {% endcomment %}
-            
-            .form label {
-              position: relative;
-            }
-            
-            .form label .input {
-              width: 89%;
-              padding: 10px 10px 20px 10px;
-              outline: 0;
-              border: 1px solid rgba(105, 105, 105, 0.397);
-              border-radius: 10px;
-            }
-            
-            .form label .input + span {
-              position: absolute;
-              left: 10px;
-              top: 15px;
-              color: grey;
-              font-size: 0.9em;
-              cursor: text;
-              transition: 0.3s ease;
-            }
-            
-            .form label .input:placeholder-shown + span {
-              top: 15px;
-              font-size: 0.9em;
-            }
-            
-            .form label .input:focus + span,.form label .input:valid + span {
-              top: 30px;
-              font-size: 0.7em;
-              font-weight: 600;
-            }
-            
-            .form label .input:valid + span {
-              color: green;
-            }
-            
-            .submit {
-              border: none;
-              outline: none;
-              background-color: royalblue;
-              padding: 10px;
-              border-radius: 10px;
-              color: #fff;
-              font-size: 16px;
-              transform: .3s ease;
-            }
-            
-            .submit:hover {
-              background-color: rgb(56, 90, 194);
-            }
-            
-            @keyframes pulse {
-              from {
+        }
+
+        .form label {
+            position: relative;
+            width: 100%;
+        }
+
+        .form label .input {
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+            padding: 15px 10px 5px;
+            outline: none;
+            border: 1px solid rgba(105, 105, 105, 0.397);
+            border-radius: 10px;
+            font-size: medium;
+        }
+
+        .form label .input + span {
+            color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-size: 0.9em;
+            transition: 0.3s ease;
+        }
+
+        .form label .input:focus + span,
+        .form label .input:valid + span {
+            color: #d30073;
+            top: 2px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .submit {
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            color: #d30073;
+            font-size: 16px;
+            background-color: whitesmoke;
+            border: 1px solid #d30073;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit:hover {
+            background-color: #d30073;
+            color: whitesmoke;
+        }
+
+        @keyframes pulse {
+            from {
                 transform: scale(0.9);
                 opacity: 1;
-              }
-            
-              to {
+            }
+            to {
                 transform: scale(1.8);
                 opacity: 0;
-              }
             }
-         </style>
+        }
+        /* ✅ تصميم صندوق الرسائل */
+.alert-box {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+        
+</style>
 </head>
 <body>
-<form action=""  class="form" method = 'post'>
-    {% csrf_token %}
-    <p class="title">Register </p>
-    <p class="message">Signup now and get full access to our app. </p>
-        <div class="flex">
-          <label>
-            <input required="" placeholder="" type="text" class="input" name='firstname' id='firstname'>
-            <span>firstname</span>
-        </label> 
+    <body>
 
-        <label>
-            <input required="" placeholder="" type="text" class="input" name='username' id='username'>
-            <span>username</span>
-        </label>
-    </div>  
-            
-    <label>
-        <input required="" placeholder="" type="email" class="input" name='email' id='email'>
-        <span>Email</span>
-    </label> 
+        <form class="form" method="post">
+            {% csrf_token %}
+            <p class="title">التسجيل</p>
+            <p class="message">سجل الآن واحصل على وصول كامل إلى تطبيقنا.</p>
         
-    <label>
-        <input required="" placeholder="" type="password" class="input" name='password' id='password'>
-        <span>Password</span>
-    </label>
-    <label>
-    </label>
-    <button class="submit">Submit</button>
-    <p class="signin">Already have an acount ? <a href="{% url "logins" %}">Signin</a> </p>
-</form>
-
+            {% if message %}
+            <div class="alert-box {% if '✅' in message %}success{% else %}error{% endif %}">
+                {{ message }}
+            </div>
+            {% endif %}
+        
+            <div class="flex">
+                <label>
+                    <input required placeholder=" " type="text" class="input" name="name" />
+                    <span>الاسم</span>
+                </label>
+            </div>
+        
+            <label>
+                <input required placeholder=" " type="text" class="input" name="username" />
+                <span>اسم المستخدم</span>
+            </label>
+        
+            <label>
+                <input required placeholder=" " type="email" class="input" name="email" />
+                <span>البريد الإلكتروني</span>
+            </label>
+        
+            <label>
+                <input required placeholder=" " type="password" class="input" name="password" />
+                <span>كلمة المرور</span>
+            </label>
+        
+            <button class="submit">تسجيل</button>
+            <p class="signin">لديك حساب بالفعل؟ <a href="{% url 'logins' %}">تسجيل الدخول</a></p>
+        </form>
+        
+        </body>
+        
 
 </body>
 </html>

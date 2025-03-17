@@ -9,44 +9,45 @@ def home(request):
     return render(request , 'home.html')
 
 
-def register(request):
-    if request.method == "POST":
-        firstname = request.POST.get('firstname')
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
 
+def register(request):
+    message = None 
+    if request.method == "POST":
+        name = request.POST["name"]
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
         if User.objects.filter(username=username).exists():
-            request.session['message'] = "اسم المستخدم موجود "
-            return redirect('logins')
-        
+            message = "❌ اسم المستخدم مأخوذ بالفعل، يرجى اختيار اسم آخر."
+            return render(request, "register.html", {"message": message})
+
         if User.objects.filter(email=email).exists():
-            request.session['message'] = " الايميل مسجل مسبقا"
-            return redirect('loginns')
-        
-        myuser = User.objects.create_user( username=username , email=email , password=password)
-        myuser.first_name = firstname
-        myuser.save()
-        request.session['messgae']='تم انشاء الحساب بنجاح'
-        return redirect('logins')
-    
-    return render(request , 'register.html')
+            message = "❌ البريد الإلكتروني مستخدم بالفعل، يرجى استخدام بريد آخر."
+            return render(request, "register.html", {"message": message})
+        user = User.objects.create_user(username=username, email=email, password=password, first_name=name)
+        user.save()
+        message = "✅ تم التسجيل بنجاح! يمكنك الآن تسجيل الدخول."
+        return render(request, "register.html", {"message": message})
+    return render(request, "register.html", {"message": message})
+
 
 
 
 def logins(request):
-     if request.method == "POST":
-      username = request.POST.get('username')
-      password = request.POST.get('password')
-      user = authenticate( request , username=username , password=password)
-      if user is not None:
-          login(request , user)
-          return redirect('home')
-      else:
-        #   request.session['message'] = " ليس لديك حساب "
-          return redirect('register')
-     return render(request , 'logins.html')
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, "✅ تم تسجيل الدخول بنجاح!")
+            return redirect("home")  
+        else:
+            messages.error(request, "❌ اسم المستخدم أو كلمة المرور غير صحيحة!")
+
+    return render(request, 'logins.html')
 
 def about(request):
     return render(request , 'about.html')
