@@ -13,15 +13,17 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# تحديد المسار الأساسي للمشروع
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# استخدم متغير البيئة SECRET_KEY، وإذا لم يكن موجودًا، ضع قيمة افتراضية (يجب تغييره في الإنتاج)
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-default-key")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+# قراءة قيمة DEBUG من البيئة، وإذا لم يتم تحديدها، اجعلها False
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ixc!avla8&jrsk5(lw0*%0+%j2q4k%d5+(7e@@!t=lsqtsig*-'
+# السماح للنطاقات المحددة في متغير البيئة، أو استخدام localhost كافتراضي
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
